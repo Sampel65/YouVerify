@@ -2,17 +2,22 @@ import SwiftUI
 
 struct SignupView: View {
     @StateObject private var viewModel = SignupViewModel()
-    @State private var navigateToVerification = false
-    @State private var navigateToSignIn = false
+    @State private var isNavigatingToVerification = false
+    @State private var isNavigatingToSignIn = false
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: 20) {
-            Text("Let's get started! ")
+            FinTrackText("Let's get started! ",
+                      size: 24,
+                      weight: .bold,
+                      textAlignment: .leading)
                 .font(.capriolaRegular(size: 24))
                 .bold()
             
-            Text("Join us and start managing your finances with Fintrack today.")
+            FinTrackText("Join us and start managing your finances with Fintrack today.",
+                      size: 16,
+                      textAlignment: .leading)
                 .font(.capriolaRegular(size: 16))
                 .foregroundColor(.secondary)
             
@@ -39,10 +44,13 @@ struct SignupView: View {
             Spacer()
             
             VStack(spacing: 16) {
+                NavigationLink(destination: VerificationView(email: $viewModel.email).navigationBarBackButtonHidden(true),
+                             isActive: $isNavigatingToVerification) { EmptyView() }
+                
                 Button(action: {
                     viewModel.createAccount { success in
                         if success {
-                            navigateToVerification = true
+                            isNavigatingToVerification = true
                         }
                     }
                 }) {
@@ -55,22 +63,22 @@ struct SignupView: View {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                         } else {
-                            Text("Create an account")
-                                .font(.capriolaRegular(size: 16))
+                            FinTrackText("Create an account",
+                                      size: 16,
+                                      weight: .bold)
                                 .foregroundColor(.white)
-                                .bold()
                         }
                     }
                 }
                 .disabled(viewModel.isLoading)
                 
                 HStack(spacing: 4) {
-                    Text("Already have an account?")
-                        .font(.capriolaRegular(size: 14))
+                    FinTrackText("Already have an account?",
+                              size: 14)
                     
-                    Button(action: { navigateToSignIn = true }) {
-                        Text("Sign In")
-                            .font(.capriolaRegular(size: 14))
+                    NavigationLink(destination: SignInView().navigationBarBackButtonHidden(true)) {
+                        FinTrackText("Sign In",
+                                  size: 14)
                             .foregroundColor(Color(red: 0.22, green: 0.49, blue: 0.49))
                     }
                 }
@@ -80,15 +88,9 @@ struct SignupView: View {
         .padding()
         .alert(isPresented: Binding(get: { !viewModel.errorMessage.isEmpty },
                                   set: { _ in viewModel.errorMessage = "" })) {
-            Alert(title: Text("Error").font(.capriolaRegular(size: 16)),
-                  message: Text(viewModel.errorMessage).font(.capriolaRegular(size: 14)),
-                  dismissButton: .default(Text("OK").font(.capriolaRegular(size: 14))))
-        }
-        .navigationDestination(isPresented: $navigateToVerification) {
-            VerificationView(email: viewModel.email)
-        }
-        .navigationDestination(isPresented: $navigateToSignIn) {
-            SignInView()
+            Alert(title: Text("Error"),
+                  message: Text(viewModel.errorMessage),
+                  dismissButton: .default(Text("OK")))
         }
     }
 }

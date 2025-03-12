@@ -1,19 +1,19 @@
 //
 //  SplashView.swift
-//  YouShop
+//  YouVerify
 //
 //  Created by Samson Oluwapelumi on 10/03/2025.
 //
 
 import SwiftUI
 
-///SplashView displays the app's loading screen with optimized memory management
+
 struct SplashView: View {
     
     @State private var isActive: Bool = false
     @State private var size = 0.8
     @State private var opacity = 0.5
-    
+    @State private var slideOffset: CGFloat = 1000
  
     private let animationDuration: Double = 1.2
     private let navigationDelay: Double = 5.0
@@ -21,21 +21,30 @@ struct SplashView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color("blues").ignoresSafeArea()
-                VStack {
-                    Image("youshop_logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 460, maxHeight: 550)
-                        .scaleEffect(size)
-                        .opacity(opacity)
-                        .onAppear {
-                            withAnimation(.easeIn(duration: animationDuration)) {
-                                self.size = 0.9
-                                self.opacity = 1.0
-                            }
+                Color("buttoncolor").ignoresSafeArea()
+                Text("fintrack.")
+                    .font(.capriolaRegular(size: 40))
+                    .foregroundColor(Color("buttoncolor"))
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 15)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.white)
+                    )
+                    .scaleEffect(size)
+                    .opacity(opacity)
+                    .offset(x: slideOffset)
+                    .onAppear {
+                        withAnimation(.easeIn(duration: animationDuration)) {
+                            self.size = 0.9
+                            self.opacity = 1.0
                         }
-                }
+                        
+                        withAnimation(.easeOut(duration: 0.8).delay(0.3)) {
+                            slideOffset = 0
+                        }
+                    }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .task {
                     try? await Task.sleep(for: .seconds(navigationDelay))
 
@@ -47,9 +56,8 @@ struct SplashView: View {
                 }
             }
             .navigationDestination(isPresented: $isActive) {
-                LoginView()
+                OnboardingView().navigationBarBackButtonHidden()
             }
         }
     }
 }
-

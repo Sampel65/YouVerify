@@ -1,3 +1,13 @@
+//
+//  CustomButton.swift
+//  YouVerify
+//
+//  Created by Samson Oluwapelumi on 10/03/2025.
+//
+
+import SwiftUI
+
+
 struct CustomButton: View {
     let title: String
     let action: () -> Void
@@ -9,8 +19,8 @@ struct CustomButton: View {
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .frame(height: 56)
-                .background(Color("Primary")) // Use hex: #437B76
-                .cornerRadius(8)
+                .background(Color("buttoncolor"))
+                .cornerRadius(20)
         }
     }
 }

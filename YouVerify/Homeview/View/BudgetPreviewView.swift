@@ -22,7 +22,7 @@ struct BudgetPreviewView: View {
                 
                 Spacer()
                 
-                YouVerifyTest("Budget preview",
+                FinTrackText("Budget preview",
                       size: 16,
                       weight: .medium)
                 
@@ -35,14 +35,14 @@ struct BudgetPreviewView: View {
                     // Budget Info Card with target icon
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
-                            YouVerifyTest(budgetData.name,
+                            FinTrackText(budgetData.name,
                                       size: 13,
                                       weight: .medium)
                             
                             Spacer()
                             
                             Button(action: {}) {
-                                YouVerifyTest("Set as Default",
+                                FinTrackText("Set as Default",
                                           size: 10,
                                           color: .white)
                                     .padding(.horizontal, 12)
@@ -52,11 +52,11 @@ struct BudgetPreviewView: View {
                             }
                         }
                         
-                        YouVerifyTest("Budget cycle: \(selectedStartDate?.formatted(date: .numeric, time: .omitted) ?? "") to \(selectedEndDate?.formatted(date: .numeric, time: .omitted) ?? "")",
+                        FinTrackText("Budget cycle: \(selectedStartDate?.formatted(date: .numeric, time: .omitted) ?? "") to \(selectedEndDate?.formatted(date: .numeric, time: .omitted) ?? "")",
                                   size: 12,
                                   color: .gray)
                         
-                        YouVerifyTest("₦ \(String(format: "%.2f", budgetData.amount))",
+                        FinTrackText("₦ \(String(format: "%.2f", budgetData.amount))",
                                   size: 28,
                                   weight: .bold)
                         
@@ -76,7 +76,7 @@ struct BudgetPreviewView: View {
                     // Budget Source Section
                     VStack(alignment: .leading, spacing: 12) {
                         HStack {
-                            YouVerifyTest("Budget source",
+                            FinTrackText("Budget source",
                                       size: 12,
                                       weight: .medium)
                             
@@ -84,7 +84,7 @@ struct BudgetPreviewView: View {
                             
                             Button(action: {}) {
                                 HStack(spacing: 4) {
-                                    YouVerifyTest("Change",
+                                    FinTrackText("Change",
                                               size: 10,
                                               color: Color("buttoncolor"))
                                     Image(systemName: "chevron.right")
@@ -107,10 +107,10 @@ struct BudgetPreviewView: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 8))
                                     
                                     VStack(alignment: .leading, spacing: 4) {
-                                        YouVerifyTest(source.name,
+                                        FinTrackText(source.name,
                                                   size: 12,
                                                   weight: .medium)
-                                        YouVerifyTest("Account balance: ₦\(source.balance)",
+                                        FinTrackText("Account balance: ₦\(source.balance)",
                                                   size: 12,
                                                   color: .gray)
                                     }
@@ -125,7 +125,7 @@ struct BudgetPreviewView: View {
                     // Budget Cycle Section
                     VStack(alignment: .leading, spacing: 12) {
                         HStack {
-                            YouVerifyTest("Budget cycle",
+                            FinTrackText("Budget cycle",
                                       size: 12,
                                       weight: .medium)
                             
@@ -133,7 +133,7 @@ struct BudgetPreviewView: View {
                             
                             Button(action: {}) {
                                 HStack(spacing: 4) {
-                                    YouVerifyTest("Change",
+                                    FinTrackText("Change",
                                               size: 12,
                                               color: Color("buttoncolor"))
                                     Image(systemName: "chevron.right")
@@ -151,10 +151,10 @@ struct BudgetPreviewView: View {
                                 VStack(alignment: .leading, spacing: 8) {
                                     Image(systemName: "calendar")
                                         .foregroundColor(.black)
-                                    YouVerifyTest(start.formatted(date: .numeric, time: .omitted),
+                                    FinTrackText(start.formatted(date: .numeric, time: .omitted),
                                               size: 12,
                                               weight: .medium)
-                                    YouVerifyTest("Start date",
+                                    FinTrackText("Start date",
                                               size: 12,
                                               color: .gray)
                                 }
@@ -164,10 +164,10 @@ struct BudgetPreviewView: View {
                                 VStack(alignment: .leading, spacing: 8) {
                                     Image(systemName: "calendar")
                                         .foregroundColor(.black)
-                                    YouVerifyTest(end.formatted(date: .numeric, time: .omitted),
+                                    FinTrackText(end.formatted(date: .numeric, time: .omitted),
                                               size: 12,
                                               weight: .medium)
-                                    YouVerifyTest("End date",
+                                    FinTrackText("End date",
                                               size: 12,
                                               color: .gray)
                                 }
@@ -181,7 +181,7 @@ struct BudgetPreviewView: View {
                     // Alert Toggle Section
                     VStack(alignment: .leading, spacing: 16) {
                         HStack {
-                            YouVerifyTest("Receive alert when it reaches a certain limit",
+                            FinTrackText("Receive alert when it reaches a certain limit",
                                       size: 12,
                                       color: .gray)
                             
@@ -200,7 +200,7 @@ struct BudgetPreviewView: View {
             
             // Create Budget Button
             Button(action: {}) {
-                YouVerifyTest("Create Budget",
+                FinTrackText("Create Budget",
                           size: 14,
                           weight: .medium,
                           color: .white)

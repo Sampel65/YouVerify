@@ -23,7 +23,7 @@ struct Popup<Content: View>: View {
             content
                 .frame(width: UIScreen.main.bounds.size.width - 100)
                 .padding(24)
-                .background(Color("buttoncolor"))
+                .background(Color("orangeButton"))
                 .cornerRadius(20)
                 .padding(.horizontal, 32)
         }

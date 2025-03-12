@@ -22,6 +22,7 @@ struct CustomCalendarView: View {
             HStack {
                 Text(monthYearString(from: currentMonth))
                     .font(.capriolaRegular(size: 18))
+                    .foregroundColor(Color("orangeButton"))
                 
                 Spacer()
                 
@@ -40,8 +41,16 @@ struct CustomCalendarView: View {
             
             // Weekday headers
             HStack {
-                ForEach(["M", "T", "W", "T", "F", "S", "S"], id: \.self) { day in
-                    Text(day)
+                ForEach([
+                    ("M", "Monday"),
+                    ("T", "Tuesday"),
+                    ("W", "Wednesday"),
+                    ("T", "Thursday"),
+                    ("F", "Friday"),
+                    ("S", "Saturday"),
+                    ("S", "Sunday")
+                ], id: \.1) { day in
+                    Text(day.0)
                         .font(.capriolaRegular(size: 14))
                         .foregroundColor(.gray)
                         .frame(maxWidth: .infinity)
@@ -51,7 +60,7 @@ struct CustomCalendarView: View {
             // Calendar grid
             let days = daysInMonth()
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
-                ForEach(days, id: \.self) { date in
+                ForEach(Array(days.enumerated()), id: \.offset) { index, date in
                     if let date = date {
                         dayView(for: date)
                     } else {
@@ -62,31 +71,7 @@ struct CustomCalendarView: View {
             }
             
             // Date selection fields
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Start date")
-                    .font(.capriolaRegular(size: 16))
-                
-                TextField("Start date", text: .constant(startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""))
-                    .font(.capriolaRegular(size: 16))
-                    .foregroundColor(.gray)
-                    .disabled(true)
-                    .padding(.vertical, 12)
-                    .padding(.horizontal, 16)
-                    .background(Color.white)
-                    .cornerRadius(12)
-                
-                Text("End date")
-                    .font(.capriolaRegular(size: 16))
-                
-                TextField("End date", text: .constant(endDate?.formatted(date: .abbreviated, time: .omitted) ?? ""))
-                    .font(.capriolaRegular(size: 16))
-                    .foregroundColor(.gray)
-                    .disabled(true)
-                    .padding(.vertical, 12)
-                    .padding(.horizontal, 16)
-                    .background(Color.white)
-                    .cornerRadius(12)
-            }
+            dateFieldsSection
             
             Button(action: { dismiss() }) {
                 Text("Save Date")
@@ -94,24 +79,42 @@ struct CustomCalendarView: View {
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
-                    .background(Color("buttoncolor"))
-                    .cornerRadius(12)
+                    .background(Color("orangeButton"))
+                    .cornerRadius(20)
             }
         }
         .padding(24)
+        .background(Color.white)
     }
     
     private func dayView(for date: Date) -> some View {
-        let isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
+        let isStartDate = startDate.map { calendar.isDate(date, inSameDayAs: $0) } ?? false
+        let isEndDate = endDate.map { calendar.isDate(date, inSameDayAs: $0) } ?? false
+        let isInRange = isDateInRange(date)
         
         return Button(action: { selectDate(date) }) {
             Text("\(calendar.component(.day, from: date))")
                 .font(.capriolaRegular(size: 16))
-                .foregroundColor(isSelected ? .white : .black)
+                .foregroundColor(isStartDate || isEndDate ? .white : (isInRange ? .black : .black))
                 .frame(width: 40, height: 40)
-                .background(isSelected ? Color("buttoncolor") : Color.clear)
+                .background(
+                    Group {
+                        if isStartDate || isEndDate {
+                            Color("orangeButton")
+                        } else if isInRange {
+                            Color("orangeButton").opacity(0.2)
+                        } else {
+                            Color.clear
+                        }
+                    }
+                )
                 .cornerRadius(8)
         }
+    }
+    
+    private func isDateInRange(_ date: Date) -> Bool {
+        guard let start = startDate, let end = endDate else { return false }
+        return date >= start && date <= end
     }
     
     private func monthYearString(from date: Date) -> String {
@@ -130,12 +133,11 @@ struct CustomCalendarView: View {
         
         let firstWeekday = calendar.component(.weekday, from: firstDay)
         
-        // Add empty spaces for days before the first day of the month
         for _ in 0..<((firstWeekday - 2 + 7) % 7) {
             days.append(nil)
         }
         
-        // Add all days in the month
+
         for day in range {
             guard let date = calendar.date(byAdding: .day, value: day - 1, to: firstDay) else { continue }
             days.append(date)
@@ -166,6 +168,49 @@ struct CustomCalendarView: View {
             currentMonth = newDate
         }
     }
+    
+    private func formatDate(_ date: Date?) -> String {
+        guard let date = date else { return "" }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: date)
+    }
+    
+    var dateFieldsSection: some View {
+        HStack(spacing: 16) {
+            VStack(alignment: .leading) {
+                Text("Start date")
+                    .font(.capriolaRegular(size: 16))
+                
+                Text(startDate != nil ? formatDate(startDate) : "Start date")
+                    .font(.capriolaRegular(size: 16))
+                    .foregroundColor(startDate != nil ? .black : .gray)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 16)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.white)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                    }
+            }
+            
+            VStack(alignment: .leading) {
+                Text("End date")
+                    .font(.capriolaRegular(size: 16))
+                
+                Text(endDate != nil ? formatDate(endDate) : "End date")
+                    .font(.capriolaRegular(size: 16))
+                    .foregroundColor(endDate != nil ? .black : .gray)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 16)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.white)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                    }
+            }
+        }
+    }
 }
-
-// End of file

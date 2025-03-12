@@ -9,16 +9,16 @@ struct EmptyBudgetView: View {
                 VStack(spacing: 16) {
                     Spacer()
                     
-                    YouVerifyTest("Nothing to see here yet.",
+                    FinTrackText("Nothing to see here yet.",
                               size: 24,
                               weight: .bold)
                     
-                    YouVerifyTest("Hi there, create a budget to get started.",
+                    FinTrackText("Hi there, create a budget to get started.",
                               size: 16,
                               color: .gray)
                     
                     Button(action: onCreateBudget) {
-                        YouVerifyTest("Create a budget",
+                        FinTrackText("Create a budget",
                                   size: 16,
                                   color: .white)
                             .frame(maxWidth: .infinity)

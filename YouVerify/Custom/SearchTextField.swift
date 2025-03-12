@@ -6,15 +6,10 @@ struct SearchTextField: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            Circle()
-                .fill(Color.black.opacity(0.03))
-                .frame(width: 32, height: 32)
-                .overlay {
                     Image("search")
                         .resizable()
                         .frame(width: 16, height: 16)
-                        .foregroundColor(.black.opacity(0.3))
-                }
+
             
             TextField("", text: $text)
                 .placeholder(when: text.isEmpty) {
@@ -31,7 +26,6 @@ struct SearchTextField: View {
     }
 }
 
-// Custom View Modifier for placeholder
 extension View {
     func placeholder<Content: View>(
         when shouldShow: Bool,

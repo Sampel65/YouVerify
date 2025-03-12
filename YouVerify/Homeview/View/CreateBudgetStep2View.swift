@@ -36,7 +36,7 @@ struct CreateBudgetStep2View: View {
                 
                 Spacer()
                 
-                YouVerifyTest("2 of 3",
+                FinTrackText("2 of 3",
                           size: 16,
                           weight: .regular)
                 
@@ -45,11 +45,11 @@ struct CreateBudgetStep2View: View {
             .padding(.horizontal)
             
             VStack(spacing: 16) {
-                YouVerifyTest("Create your budget",
+                FinTrackText("Create your budget",
                           size: 24,
                           weight: .bold)
                 
-                YouVerifyTest("Setup a spending budget whether it's for a month, a week or even a trip.",
+                FinTrackText("Setup a spending budget whether it's for a month, a week or even a trip.",
                           size: 16,
                           color: .gray,
                           textAlignment: .center)
@@ -60,7 +60,7 @@ struct CreateBudgetStep2View: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     VStack(alignment: .leading, spacing: 12) {
-                        YouVerifyTest("Name of budget",
+                        FinTrackText("Name of budget",
                                   size: 16,
                                   weight: .bold)
                         
@@ -71,7 +71,7 @@ struct CreateBudgetStep2View: View {
                     
                     // Budget amount
                     VStack(alignment: .leading, spacing: 12) {
-                        YouVerifyTest("Set a budget amount",
+                        FinTrackText("Set a budget amount",
                                   size: 16,
                                   weight: .bold)
                         
@@ -82,7 +82,7 @@ struct CreateBudgetStep2View: View {
                     
                     // Cycle of budget
                     VStack(alignment: .leading, spacing: 12) {
-                        YouVerifyTest("Cycle of budget",
+                        FinTrackText("Cycle of budget",
                                   size: 16,
                                   weight: .bold)
                         
@@ -103,7 +103,7 @@ struct CreateBudgetStep2View: View {
                     
                     // Budget source
                     VStack(alignment: .leading, spacing: 16) {
-                        YouVerifyTest("Budget source",
+                        FinTrackText("Budget source",
                                   size: 16,
                                   weight: .bold)
                         
@@ -115,7 +115,7 @@ struct CreateBudgetStep2View: View {
                             }
                         } label: {
                             HStack {
-                                YouVerifyTest(selectedFundSource?.name ?? "Select account(s)",
+                                FinTrackText(selectedFundSource?.name ?? "Select account(s)",
                                           size: 16,
                                           color: selectedFundSource == nil ? .gray : .black)
                                 Spacer()
@@ -138,9 +138,9 @@ struct CreateBudgetStep2View: View {
                                     .background(Color.purple)
                                 
                                 VStack(alignment: .leading) {
-                                    YouVerifyTest(source.name,
+                                    FinTrackText(source.name,
                                               size: 16)
-                                    YouVerifyTest("Account balance: ₦\(source.balance)",
+                                    FinTrackText("Account balance: ₦\(source.balance)",
                                               size: 14,
                                               color: .gray)
                                 }

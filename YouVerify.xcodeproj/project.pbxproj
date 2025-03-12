@@ -6,13 +6,43 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		605B17BD2D7F24E2001B8460 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 605B17BC2D7F24E2001B8460 /* FirebaseAuth */; };
+		605B17BF2D7F24E2001B8460 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 605B17BE2D7F24E2001B8460 /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		605B17972D7F169F001B8460 /* YouVerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouVerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60834C682D7F2E0200D493B8 /* YouVerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouVerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		60AAFD272D81DE42000A60C7 /* Exceptions for "YouVerify" folder in "YouVerify" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+				Info.plist,
+			);
+			target = 605B17962D7F169F001B8460 /* YouVerify */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		60AAFD292D81DEAD000A60C7 /* Exceptions for "YouVerify" folder in "Compile Sources" phase from "YouVerify" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 605B17932D7F169F001B8460 /* Sources */;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		605B17992D7F169F001B8460 /* YouVerify */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				60AAFD272D81DE42000A60C7 /* Exceptions for "YouVerify" folder in "YouVerify" target */,
+				60AAFD292D81DEAD000A60C7 /* Exceptions for "YouVerify" folder in "Compile Sources" phase from "YouVerify" target */,
+			);
 			path = YouVerify;
 			sourceTree = "<group>";
 		};
@@ -23,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				605B17BD2D7F24E2001B8460 /* FirebaseAuth in Frameworks */,
+				605B17BF2D7F24E2001B8460 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,16 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				605B17992D7F169F001B8460 /* YouVerify */,
-				605B17982D7F169F001B8460 /* Products */,
+				60834C682D7F2E0200D493B8 /* YouVerify.app */,
 			);
-			sourceTree = "<group>";
-		};
-		605B17982D7F169F001B8460 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				605B17972D7F169F001B8460 /* YouVerify.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,9 +89,11 @@
 			);
 			name = YouVerify;
 			packageProductDependencies = (
+				605B17BC2D7F24E2001B8460 /* FirebaseAuth */,
+				605B17BE2D7F24E2001B8460 /* FirebaseFirestore */,
 			);
 			productName = YouVerify;
-			productReference = 605B17972D7F169F001B8460 /* YouVerify.app */;
+			productReference = 60834C682D7F2E0200D493B8 /* YouVerify.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -94,8 +120,11 @@
 			);
 			mainGroup = 605B178E2D7F169F001B8460;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				605B17BB2D7F24E2001B8460 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 605B17982D7F169F001B8460 /* Products */;
+			productRefGroup = 605B178E2D7F169F001B8460;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -253,8 +282,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"YouVerify/Preview Content\"";
 				DEVELOPMENT_TEAM = T6LQU8TP96;
+				DONT_GENERATE_INFOPLIST_FILE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YouVerify/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -282,8 +313,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"YouVerify/Preview Content\"";
 				DEVELOPMENT_TEAM = T6LQU8TP96;
+				DONT_GENERATE_INFOPLIST_FILE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YouVerify/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -324,6 +357,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		605B17BB2D7F24E2001B8460 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		605B17BC2D7F24E2001B8460 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 605B17BB2D7F24E2001B8460 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		605B17BE2D7F24E2001B8460 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 605B17BB2D7F24E2001B8460 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 605B178F2D7F169F001B8460 /* Project object */;
 }

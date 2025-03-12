@@ -11,7 +11,7 @@ struct AccountView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                YouVerifyTest("My Account",
+                FinTrackText("My Account",
                           size: 15,
                           textAlignment: .center)
                     .frame(maxWidth: .infinity)
@@ -19,15 +19,15 @@ struct AccountView: View {
                 
                 // Profile Card
                 VStack(alignment: .leading, spacing: 8) {
-                    YouVerifyTest("Aderinsola Adejuwon",
+                    FinTrackText("Aderinsola Adejuwon",
                               size: 18,
                               color: .white)
                     
-                    YouVerifyTest("janedoe@gmail.com",
+                    FinTrackText("janedoe@gmail.com",
                               size: 12,
                               color: .white)
                     
-                    YouVerifyTest("+234 90 1619 2553",
+                    FinTrackText("+234 90 1619 2553",
                               size: 12,
                               color: .white)
                 }
@@ -59,7 +59,7 @@ struct AccountView: View {
                 
                 // Logout Button
                 Button(action: {}) {
-                    YouVerifyTest("Log Out",
+                    FinTrackText("Log Out",
                               size: 13,
                               color: .red)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -82,7 +82,7 @@ struct AccountView: View {
                 
                 // Contact Info
                 VStack(alignment: .leading, spacing: 16) {
-                    YouVerifyTest("Contact info",
+                    FinTrackText("Contact info",
                               size: 20,
                               color: .white)
                     
@@ -92,7 +92,7 @@ struct AccountView: View {
                                 .resizable()
                                 .frame(width: 24, height: 24)
                                 .foregroundColor(.white)
-                            YouVerifyTest("contact@fintrack.com",
+                            FinTrackText("contact@fintrack.com",
                                       size: 16,
                                       color: .white)
                         }
@@ -102,7 +102,7 @@ struct AccountView: View {
                                 .resizable()
                                 .frame(width: 24, height: 24)
                                 .foregroundColor(.white)
-                            YouVerifyTest("+234 90 161 92553",
+                            FinTrackText("+234 90 161 92553",
                                       size: 16,
                                       color: .white)
                         }
@@ -121,7 +121,7 @@ struct AccountView: View {
                 )
                 .cornerRadius(16)
                 
-                YouVerifyTest("V 1.0.0",
+                FinTrackText("V 1.0.0",
                           size: 14,
                           color: .gray)
                     .padding(.vertical, 24)
@@ -147,9 +147,9 @@ struct SettingsRow: View {
                 .cornerRadius(8)
             
             VStack(alignment: .leading, spacing: 4) {
-                YouVerifyTest(title,
+                FinTrackText(title,
                           size: 14)
-                YouVerifyTest(subtitle,
+                FinTrackText(subtitle,
                           size: 12,
                           color: .gray)
             }
@@ -175,7 +175,7 @@ struct LinkRow: View {
     
     var body: some View {
         HStack {
-            YouVerifyTest(title,
+            FinTrackText(title,
                       size: 13,
                       color: .black)
             Spacer()

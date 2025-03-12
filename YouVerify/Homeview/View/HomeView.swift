@@ -103,6 +103,6 @@ struct HomeView: View {
 
         }
         .padding(.top)
-        .background(Color.white)
+        .background(Color(.systemBackground))
     }
 }

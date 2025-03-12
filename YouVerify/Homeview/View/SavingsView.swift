@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SavingsView: View {
     @State private var presentPopup = false
-    @State private var showingCreateGoal = false
+    @State private var isNavigating = false
     
     var body: some View {
         NavigationStack {
@@ -24,10 +24,6 @@ struct SavingsView: View {
                 withAnimation(.linear(duration: 0.3)) {
                     presentPopup = true
                 }
-            }
-            .navigationDestination(isPresented: $showingCreateGoal) {
-                CreateSavingsGoalView()
-                    .navigationBarBackButtonHidden(true)
             }
             .overlay {
                 if presentPopup {
@@ -47,10 +43,8 @@ struct SavingsView: View {
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
                             
-                            Button(action: {
-                                presentPopup = false
-                                showingCreateGoal = true
-                            }) {
+                            NavigationLink(destination: CreateSavingsGoalView().navigationBarBackButtonHidden(true),
+                                         isActive: $isNavigating) {
                                 Text("Create a savings goal")
                                     .font(.capriolaRegular(size: 16))
                                     .foregroundColor(Color("orangeButton"))
@@ -59,6 +53,10 @@ struct SavingsView: View {
                                     .background(Color.white)
                                     .cornerRadius(12)
                             }
+                            .simultaneousGesture(TapGesture().onEnded {
+                                presentPopup = false
+                                isNavigating = true
+                            })
                         }
                     }
                 }

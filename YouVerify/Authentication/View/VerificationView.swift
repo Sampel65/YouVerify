@@ -1,3 +1,11 @@
+//
+//  VerificationView.swift
+//  YouVerify
+//
+//  Created by Samson Oluwapelumi on 10/03/2025.
+//
+
+
 import SwiftUI
 
 struct VerificationView: View {
@@ -9,15 +17,15 @@ struct VerificationView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            YouVerifyTest("Check your email!",
+            FinTrackText("Check your email!",
                        size: 24,
                        weight: .bold)
             
-            YouVerifyTest("We have sent an email to \(email). Please remember to check your inbox as well as the spam folder.",
+            FinTrackText("We have sent an email to \(email). Please remember to check your inbox as well as the spam folder.",
                        size: 16,
                        color: .secondary)
             
-            YouVerifyTest("Please enter the verification code below to continue with your account.",
+            FinTrackText("Please enter the verification code below to continue with your account.",
                        size: 16,
                        color: .secondary)
                 .padding(.top, 8)
@@ -43,7 +51,7 @@ struct VerificationView: View {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     } else {
-                        YouVerifyTest("Continue",
+                        FinTrackText("Continue",
                                   size: 16,
                                   color: .white)
                     }
@@ -52,7 +60,7 @@ struct VerificationView: View {
             .disabled(viewModel.isLoading)
             
             HStack {
-                YouVerifyTest("Didn't receive the email?",
+                FinTrackText("Didn't receive the email?",
                            size: 14,
                            color: .secondary)
                 
@@ -60,10 +68,9 @@ struct VerificationView: View {
                     if isResendEnabled {
                         timeRemaining = 50
                         isResendEnabled = false
-                        // Resend code logic here
                     }
                 }) {
-                    YouVerifyTest(isResendEnabled ? "Resend code" : "Resend code in \(timeRemaining)s",
+                    FinTrackText(isResendEnabled ? "Resend code" : "Resend code in \(timeRemaining)s",
                               size: 14,
                               color: isResendEnabled ? Color("buttoncolor") : .gray)
                 }
@@ -84,10 +91,14 @@ struct VerificationView: View {
                   message: Text(viewModel.errorMessage),
                   dismissButton: .default(Text("OK")))
         }
-        .navigationDestination(isPresented: $viewModel.navigateToHome) {
-            Text("Home Screen")
-                .navigationBarBackButtonHidden(true)
+        
+        NavigationLink(destination: MainTabView()
+            .navigationBarBackButtonHidden(true),
+            isActive: $viewModel.navigateToHome
+        ) {
+            EmptyView()
         }
+        .hidden()
         .navigationBarBackButtonHidden(true)
     }
 }

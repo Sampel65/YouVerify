@@ -2,8 +2,6 @@ import SwiftUI
 
 struct ExpensesView: View {
     @State private var showingOptions = false
-    @State private var showingTransactions = false
-    @State private var showingAddExpense = false
     
     var body: some View {
         NavigationStack {
@@ -79,7 +77,7 @@ struct ExpensesView: View {
                             Text("Transactions")
                                 .font(.capriolaRegular(size: 16))
                             Spacer()
-                            Button(action: { showingTransactions = true }) {
+                            NavigationLink(destination: TransactionsView().navigationBarBackButtonHidden(true)) {
                                 Text("View All")
                                     .font(.capriolaRegular(size: 14))
                                     .foregroundColor(Color("buttoncolor"))
@@ -103,7 +101,7 @@ struct ExpensesView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Button(action: { showingAddExpense = true }) {
+                        NavigationLink(destination: TransactionsView().navigationBarBackButtonHidden(true)) {
                             Circle()
                                 .fill(Color("orangeButton"))
                                 .frame(width: 56, height: 56)
@@ -118,9 +116,6 @@ struct ExpensesView: View {
                         .padding(.bottom, 10)
                     }
                 }
-            }
-            .navigationDestination(isPresented: $showingTransactions) {
-                TransactionsView().navigationBarBackButtonHidden(true)
             }
         }
     }

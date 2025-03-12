@@ -10,22 +10,21 @@ struct CustomTextField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
-                .font(.subheadline)
+                .font(.custom("Capriola-Regular", size: 14))
             
             TextField(placeholder, text: $text)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .font(.custom("Capriola-Regular", size: 16))
+                .textFieldStyle(.plain)
+                .padding()
+                .frame(height: 56)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color(.systemGray6))
+                )
                 .keyboardType(keyboardType)
                 .textInputAutocapitalization(autocapitalization)
         }
     }
 }
 
-#Preview {
-    CustomTextField(
-        title: "Email",
-        placeholder: "Enter your email",
-        text: .constant("")
-    )
-    .padding()
-}
 

@@ -24,8 +24,6 @@ class SignInViewModel: ObservableObject {
             return
         }
         
-        // Here you would typically implement your sign-in logic
-        // For now, we'll just simulate success
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.isLoading = false
             self.navigateToHome = true
