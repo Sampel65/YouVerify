@@ -1,3 +1,13 @@
+
+
+
+https://github.com/user-attachments/assets/5db86983-4edf-44bf-a803-09845470269a
+
+
+
+https://github.com/user-attachments/assets/bc7f5855-39ff-4b66-a2f9-08f1a773395a
+
+
 # FinTrack - Personal Finance Management App
 
 ## Overview
